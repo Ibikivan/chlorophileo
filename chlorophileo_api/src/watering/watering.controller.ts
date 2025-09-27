@@ -15,7 +15,6 @@ export class WateringController {
     @HttpCode(HttpStatus.NO_CONTENT)
     @Patch('/:id/complete')
     async markAsCompleted(@Param('id') id: string) {
-        console.log('Marking watering as completed for ID:', id);
         await this.wateringService.markAsCompleted(id)
     }
 

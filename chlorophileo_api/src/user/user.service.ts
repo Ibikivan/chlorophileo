@@ -18,7 +18,6 @@ export class UserService {
 
     async getUser(id: string): Promise<User|null> {
         const user = await this.userRepo.getUser(id)
-        console.log({user: user, userId: id})
         return user
     }
 
