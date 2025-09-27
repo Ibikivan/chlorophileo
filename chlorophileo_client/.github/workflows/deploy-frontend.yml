@@ -1,0 +1,43 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "public/**"
+      - "package.json"
+      - "yarn.lock"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      VITE_API_URL: ${{ vars.VITE_API_URL }}
+      VITE_RETRY_LIMIT: ${{ vars.VITE_RETRY_LIMIT }}
+
+    # steps:
+    #   - name: Checkout
+    #     uses: actions/checkout@v4
+
+    #   - name: Install Dependencies (Yarn)
+    #     run: yarn install --frozen-lockfile  # Équivalent de `npm ci`
+
+    #   - name: Show API URL
+    #     run: echo "URL de l'API $VITE_API_URL"
+
+    #   - name: Build (Yarn)
+    #     run: yarn build
+
+    #   - name: List Build Files
+    #     run: ls -R  # Liste tous les fichiers générés
+
+    #   - name: Configure AWS Credentials
+    #     uses: aws-actions/configure-aws-credentials@v4
+    #     with:
+    #       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #       aws-region: eu-north-1  # Changez selon votre région
+
+    #   - name: Deploy to S3
+    #     run: aws s3 sync dist/ s3://sentinelle-front-s3 --delete
